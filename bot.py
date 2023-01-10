@@ -49,7 +49,7 @@ async def cmd_numbers(message: types.Message):
         case 'game':
             pvb_flag, smart_flag = True, False
             await new_game(message)
-@dp.message_handler()  # реакция на любой текст, кроме перечисленных выше команд
+@dp.message_handler()
 async def cmd_numbers(message: types.Message):
     await message.reply(f'{message.from_user.first_name}, я тебя не понимаю'+ emoji.emojize(':face_with_rolling_eyes:', language='alias')+ 'но могу помочь, жми /help'+ emoji.emojize(':winking_face:', language='alias'), reply=False)
 
@@ -60,7 +60,7 @@ async def update_fld(message: types.Message, new_value: int):
     else: gamemode = ''
 
     if p.check_4_win(gamefield):
-        win_str = 10*'\U00002728'+'\n'+  f'{players[not cia].upper()} ПОБЕДИЛИ!!!!'+'\n' + 10*'\U00002728'
+        win_str = 10*'\U0001f3c6'+'\n'+  f'{players[not cia].upper()} ПОБЕДИЛИ!!!!'+'\n' + 10*'\U00002728'
         p.write_log(p.t(), f'{gamemode} - {players[not cia]} победили!!!')
         await message.edit_text(f"{win_str}", reply_markup=get_keys(True))
         end_of_game = True
@@ -68,9 +68,8 @@ async def update_fld(message: types.Message, new_value: int):
         await message.edit_text(f"{new_value}", reply_markup=get_keys())
         end_of_game = False
     else:
-        q = emoji.emojize(":red_question_mark:")
-        win_str = 10*q+'\n'+f'НИЧЬЯ!'+'\n' + 10*q
-        p.write_log(p.t(), f'Ничья{gamemode}!!!')
+        win_str = f'НИЧЬЯ!'
+        p.write_log(p.t(), f'Ничья{gamemode}!')
         await message.edit_text(f"{win_str}", reply_markup=get_keys(True))
         end_of_game = True
 
