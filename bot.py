@@ -37,12 +37,12 @@ async def cmd_numbers(message: types.Message):
     global gamefield, players, pvb_flag, cia
     match message.text[1:]:
         case 'help':
-            await message.reply(f'Привет, {message.from_user.first_name}!\n/hello - поздороваться\n'+
-                                                                           '/help - вывод списка команд\n'+
+            await message.reply(f'Привет, {message.from_user.first_name}!\n/hello - приветствие\n'+
+                                                                           '/help - список команд\n'+
                                                                            '/pvp_game - игрок против игрока\n'+
-                                                                           '/game - игрок против глупого бота\n', reply=False)
+                                                                           '/game - игрок против бота\n', reply=False)
         case 'hello':
-            await message.reply(f'Привет, {message.from_user.first_name}! \nНачинаем игру? Если игра с соперником жми /pvp_game или  поиграй со мной /game' + emoji.emojize(':winking_face:', language='alias'), reply=False)
+            await message.reply(f'Привет, {message.from_user.first_name}! \nНачинаем игру? Если будешь игрть с соперником жми /pvp_game или  поиграй со мной /game' + emoji.emojize(':winking_face:', language='alias'), reply=False)
         case 'pvp_game':
             pvb_flag = False
             await new_game(message)
